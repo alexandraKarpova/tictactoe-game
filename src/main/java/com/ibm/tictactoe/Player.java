@@ -1,7 +1,8 @@
 package com.ibm.tictactoe;
 
 public class Player {
-    String mark;
+
+    private String mark;
 
     public Player(PlayerType playerType) {
         this.mark = playerType == PlayerType.X ? "x" : "o";
