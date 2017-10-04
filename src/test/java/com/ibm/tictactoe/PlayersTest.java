@@ -13,14 +13,14 @@ public class PlayersTest {
     @Test
     public void PlayerXCreated() {
         ticTacToeGame.createPlayerX();
-        Assertions.assertEquals("x", ticTacToeGame.getPlayerX().getMark());
+        Assertions.assertEquals('x', ticTacToeGame.getPlayerX().getMark());
     }
 
     @DisplayName("Player O created")
     @Test
     public void PlayerOCreated() {
         ticTacToeGame.createPlayerO();
-        Assertions.assertEquals("o", ticTacToeGame.getPlayerO().getMark());
+        Assertions.assertEquals('o', ticTacToeGame.getPlayerO().getMark());
     }
 
     @DisplayName("Players created")
