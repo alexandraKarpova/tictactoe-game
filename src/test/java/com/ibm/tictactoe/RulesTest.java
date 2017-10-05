@@ -60,7 +60,7 @@ public class RulesTest {
         board.tryPin(playerX, 1, 2);
 
         Assertions.assertFalse(ticTacToeGame.getState());
-        Assertions.assertEquals("Game finished with horizontal line", ticTacToeGame.getMessage());
+        Assertions.assertEquals(Strings.ROW, ticTacToeGame.getMessage());
     }
 
 }

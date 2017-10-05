@@ -31,6 +31,13 @@ public class TicTacToeGame {
     public void start() {
         this.board = new TicTacToeBoard();
         this.state = true;
+//        createPlayerX();
+//        createPlayerO();
+//        System.out.println(Strings.GAME_STARTED + board.toString());
+//        while (state){
+//            nextPin();
+//        System.out.println(Strings.PIN +pinCounter+'\n' + board.toString());
+//        }
     }
 
     public void nextPin() {
@@ -56,9 +63,22 @@ public class TicTacToeGame {
         //checks horizontal, vertical, diagonal lines
 //if no empty cells left
         //check game finished in a draw
-
+        if (board.isRowCopleted()){
+            finish(Strings.ROW);
+        } else if (board.isColumnCompleted()){
+            finish(Strings.COLUMN);
+        } else if (board.isDiagonalCompleted()){
+            finish(Strings.DIAGONAL);
+        } else if (!board.hasEmptyCells()){
+            finish(Strings.DRAW);
+        }
     }
 
+    private void finish(String result){
+        state=false;
+        message=result;
+        System.out.println(message);
+    }
 
     public TicTacToeBoard getBoard() {
         return board;
@@ -66,10 +86,6 @@ public class TicTacToeGame {
 
     public boolean getState() {
         return state;
-    }
-
-    public void finish() {
-
     }
 
     public String getMessage() {
@@ -81,25 +97,25 @@ public class TicTacToeGame {
         ticTacToeGame.start();
         ticTacToeGame.createPlayerX();
         ticTacToeGame.createPlayerO();
-        System.out.println("Game started: \n" + ticTacToeGame.getBoard().toString());
+        System.out.println(Strings.GAME_STARTED + ticTacToeGame.getBoard().toString());
 
         ticTacToeGame.nextPin();
-        System.out.println("First pin: \n" + ticTacToeGame.getBoard().toString());
+        System.out.println(Strings.PIN+ '\n' + ticTacToeGame.getBoard().toString());
         ticTacToeGame.nextPin();
-        System.out.println("Next pin: \n" + ticTacToeGame.getBoard().toString());
+        System.out.println(Strings.PIN+ '\n'+ ticTacToeGame.getBoard().toString());
         ticTacToeGame.nextPin();
-        System.out.println("Next pin: \n" + ticTacToeGame.getBoard().toString());
+        System.out.println(Strings.PIN+ '\n'+ ticTacToeGame.getBoard().toString());
         ticTacToeGame.nextPin();
-        System.out.println("Next pin: \n" + ticTacToeGame.getBoard().toString());
+        System.out.println(Strings.PIN+ '\n'+ ticTacToeGame.getBoard().toString());
         ticTacToeGame.nextPin();
-        System.out.println("Next pin: \n" + ticTacToeGame.getBoard().toString());
+        System.out.println(Strings.PIN+ '\n' + ticTacToeGame.getBoard().toString());
         ticTacToeGame.nextPin();
-        System.out.println("Next pin: \n" + ticTacToeGame.getBoard().toString());
+        System.out.println(Strings.PIN+ '\n' + ticTacToeGame.getBoard().toString());
         ticTacToeGame.nextPin();
-        System.out.println("Next pin: \n" + ticTacToeGame.getBoard().toString());
+        System.out.println(Strings.PIN+ '\n' + ticTacToeGame.getBoard().toString());
         ticTacToeGame.nextPin();
-        System.out.println("Next pin: \n" + ticTacToeGame.getBoard().toString());
+        System.out.println(Strings.PIN+ '\n' + ticTacToeGame.getBoard().toString());
         ticTacToeGame.nextPin();
-        System.out.println("Next pin: \n" + ticTacToeGame.getBoard().toString());
+        System.out.println(Strings.PIN+ '\n'+ ticTacToeGame.getBoard().toString());
     }
 }
