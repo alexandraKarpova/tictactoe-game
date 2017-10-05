@@ -5,11 +5,6 @@ public class TicTacToeBoard {
     private char[][] board;
 
     public TicTacToeBoard() {
-//        this.board = " | | \n" +
-//                     "-+-+-\n" +
-//                     " | | \n" +
-//                     "-+-+-\n" +
-//                     " | | ";
         this.board = new char[3][3];
     }
 
@@ -47,14 +42,13 @@ public class TicTacToeBoard {
                 }
             }
         }
-        if ((player.getPlayerType()==PlayerType.O && Xpins>Opins) ||
-                player.getPlayerType()==PlayerType.X && Xpins==Opins){
+        if ((player.getPlayerType() == PlayerType.O && Xpins > Opins) ||
+                player.getPlayerType() == PlayerType.X && Xpins == Opins) {
             if (cellValue == '\u0000') {
                 board[row][column] = player.getMark();
                 return true;
             }
         }
         return false;
-
     }
 }
