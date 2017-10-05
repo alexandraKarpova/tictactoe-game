@@ -1,0 +1,51 @@
+# Creates an infrastructure for the project
+version: '3'
+services:
+  jenkins:
+    build: ./jenkins
+    image: custom-jenkins:latest
+    volumes:
+      - jenkins_volume:/var/jenkins_home
+    ports:
+      - 50000:50000
+      - 8080:8080
+
+
+  sonarqube-db:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=sonar
+      - POSTGRES_PASSWORD=sonar
+    volumes:
+      - postgresql:/var/lib/postgresql
+      - postgresql_data:/var/lib/postgresql/data
+
+
+  sonarqube:
+    depends_on:
+      - sonarqube-db
+    image: sonarqube:latest
+    ports:
+      - 9000:9000
+      - 9092:9092
+    environment:
+      - SONARQUBE_JDBC_URL=jdbc:postgresql://sonarqube-db:5432/sonar
+    volumes:
+      - sonarqube_conf:/opt/sonarqube/conf
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_bundled-plugins:/opt/sonarqube/lib/bundled-plugins
+
+volumes:
+  #docker volumes
+  postgresql:
+  postgresql_data:
+  jenkins_volume:
+  sonarqube_conf:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_bundled-plugins:
+
+
