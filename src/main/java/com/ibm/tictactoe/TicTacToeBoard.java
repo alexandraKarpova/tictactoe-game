@@ -50,8 +50,8 @@ public class TicTacToeBoard {
 
     public boolean isRowCopleted() {
 
-        for (char[] row: this.board) {
-            if (row[0]==row[1] && row[1]==row[2]) {
+        for (char[] row : this.board) {
+            if (row[0] != '\u0000' && row[0] == row[1] && row[1] == row[2]) {
                 return true;
             }
         }
@@ -60,8 +60,8 @@ public class TicTacToeBoard {
 
     public boolean isColumnCompleted() {
 
-        for (int i=0; i<board.length; i++){
-            if (board[0][i]==board[1][i] && board[1][i]==board[2][i]){
+        for (int i = 0; i < board.length; i++) {
+            if (board[0][i] != '\u0000' && board[0][i] == board[1][i] && board[1][i] == board[2][i]) {
                 return true;
             }
         }
@@ -69,9 +69,8 @@ public class TicTacToeBoard {
     }
 
     public boolean isDiagonalCompleted() {
-
-        if ((board[0][0]==board[1][1] && board[1][1]==board[2][2]) ||
-                board[0][2]==board[1][1] && board[1][1]==board[2][0]){
+        if ((board[0][0] != '\u0000' && board[0][0] == board[1][1] && board[1][1] == board[2][2]) ||
+                board[0][2] != '\u0000' && board[0][2] == board[1][1] && board[1][1] == board[2][0]) {
             return true;
         }
         return false;

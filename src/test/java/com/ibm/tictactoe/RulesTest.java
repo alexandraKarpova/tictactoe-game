@@ -58,9 +58,56 @@ public class RulesTest {
         board.tryPin(playerX, 1, 0);
         board.tryPin(playerO, 0, 1);
         board.tryPin(playerX, 1, 2);
+        ticTacToeGame.checkBoard();
 
         Assertions.assertFalse(ticTacToeGame.getState());
+        Assertions.assertTrue(ticTacToeGame.getBoard().isRowCopleted());
         Assertions.assertEquals(Strings.ROW, ticTacToeGame.getMessage());
     }
+
+    @Test
+    public void GameFinishedWhenColumnFilled() {
+        ticTacToeGame.createPlayerX();
+        ticTacToeGame.createPlayerO();
+        ticTacToeGame.start();
+
+        TicTacToeBoard board = ticTacToeGame.getBoard();
+        Player playerX = ticTacToeGame.getPlayerX();
+        Player playerO = ticTacToeGame.getPlayerO();
+
+        board.tryPin(playerX, 1, 1);
+        board.tryPin(playerO, 0, 2);
+        board.tryPin(playerX, 0, 1);
+        board.tryPin(playerO, 1, 2);
+        board.tryPin(playerX, 2, 1);
+        ticTacToeGame.checkBoard();
+
+        Assertions.assertFalse(ticTacToeGame.getState());
+        Assertions.assertTrue(ticTacToeGame.getBoard().isColumnCompleted());
+        Assertions.assertEquals(Strings.COLUMN, ticTacToeGame.getMessage());
+    }
+
+    @Test
+    public void GameFinishedWhenDiagonalFilled() {
+        ticTacToeGame.createPlayerX();
+        ticTacToeGame.createPlayerO();
+        ticTacToeGame.start();
+
+        TicTacToeBoard board = ticTacToeGame.getBoard();
+        Player playerX = ticTacToeGame.getPlayerX();
+        Player playerO = ticTacToeGame.getPlayerO();
+
+        board.tryPin(playerX, 1, 1);
+        board.tryPin(playerO, 0, 2);
+        board.tryPin(playerX, 0, 0);
+        board.tryPin(playerO, 1, 2);
+        board.tryPin(playerX, 2, 2);
+        ticTacToeGame.checkBoard();
+
+        Assertions.assertFalse(ticTacToeGame.getState());
+        Assertions.assertTrue(ticTacToeGame.getBoard().isDiagonalCompleted());
+        Assertions.assertEquals(Strings.DIAGONAL, ticTacToeGame.getMessage());
+    }
+
 
 }
