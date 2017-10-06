@@ -1,9 +1,16 @@
 package com.ibm.tictactoe;
 
+import java.util.Random;
+
 public class TicTacToeGame {
 
+    private TicTacToeBoard board;
     private Player playerX;
     private Player playerO;
+    private int pinCounter;
+
+    private boolean state;
+    private String message;
 
     public void createPlayerX() {
         this.playerX = new Player(PlayerType.X);
@@ -21,4 +28,79 @@ public class TicTacToeGame {
         return playerO;
     }
 
+    public void start() {
+        this.board = new TicTacToeBoard();
+        this.state = true;
+//        createPlayerX();
+//        createPlayerO();
+//        System.out.println(Strings.GAME_STARTED + board.toString());
+//        while (state){
+//            nextPin();
+//        System.out.println(Strings.PIN +pinCounter+'\n' + board.toString());
+//        }
+    }
+
+    public void nextPin(boolean printResult) {
+        Player player;
+        if (pinCounter % 2 == 0) {
+            player = playerX;
+        } else {
+            player = playerO;
+        }
+        Random randomIndex = new Random();
+        int row = randomIndex.nextInt(3);
+        int column = randomIndex.nextInt(3);
+        if (!board.tryPin(player, row, column)) {
+            nextPin(printResult);
+        } else {
+            pinCounter++;
+            if (printResult) {
+                System.out.println(Strings.PIN + '\n' + board.toString());
+            }
+            checkBoard();
+        }
+
+    }
+
+    public void checkBoard() {
+        if (board.isRowCopleted()) {
+            finish(Strings.ROW);
+        } else if (board.isColumnCompleted()) {
+            finish(Strings.COLUMN);
+        } else if (board.isDiagonalCompleted()) {
+            finish(Strings.DIAGONAL);
+        } else if (!board.hasEmptyCells()) {
+            finish(Strings.DRAW);
+        }
+    }
+
+    private void finish(String result) {
+        state = false;
+        message = result;
+        System.out.println(message);
+    }
+
+    public TicTacToeBoard getBoard() {
+        return board;
+    }
+
+    public boolean getState() {
+        return state;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public static void main(String[] args) {
+        TicTacToeGame ticTacToeGame = new TicTacToeGame();
+        ticTacToeGame.start();
+        ticTacToeGame.createPlayerX();
+        ticTacToeGame.createPlayerO();
+        System.out.println(Strings.GAME_STARTED + ticTacToeGame.getBoard().toString());
+
+        while (ticTacToeGame.getState()) {
+            ticTacToeGame.nextPin(true);
+        }
+    }
 }
