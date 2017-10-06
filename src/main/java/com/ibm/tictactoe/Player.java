@@ -2,13 +2,19 @@ package com.ibm.tictactoe;
 
 public class Player {
 
-    private String mark;
+    private PlayerType playerType;
 
     public Player(PlayerType playerType) {
-        this.mark = playerType == PlayerType.X ? "x" : "o";
+        this.playerType=playerType;
     }
 
-    public String getMark() {
-        return mark;
+    public PlayerType getPlayerType() {
+        return playerType;
     }
+
+    public char getMark() {
+        return playerType == PlayerType.X ? 'x' : 'o';
+
+    }
+
 }
