@@ -1,8 +1,8 @@
 package com.ibm.tictactoe;
 
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 @DisplayName("Board Test")
 public class BoardTest {
