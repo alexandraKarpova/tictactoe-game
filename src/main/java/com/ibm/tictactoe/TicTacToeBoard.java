@@ -78,5 +78,6 @@ public class TicTacToeBoard {
 
     public boolean hasEmptyCells() {
         return toString().contains(Strings.SPACE);
+
     }
 }

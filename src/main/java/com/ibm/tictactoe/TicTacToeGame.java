@@ -40,7 +40,7 @@ public class TicTacToeGame {
 //        }
     }
 
-    public void nextPin() {
+    public void nextPin(boolean printResult) {
         Player player;
         if (pinCounter % 2 == 0) {
             player = playerX;
@@ -51,10 +51,12 @@ public class TicTacToeGame {
         int row = randomIndex.nextInt(3);
         int column = randomIndex.nextInt(3);
         if (!board.tryPin(player, row, column)) {
-            nextPin();
+            nextPin(printResult);
         } else {
             pinCounter++;
-            System.out.println(Strings.PIN + '\n' + board.toString());
+            if (printResult) {
+                System.out.println(Strings.PIN + '\n' + board.toString());
+            }
             checkBoard();
         }
 
@@ -98,7 +100,7 @@ public class TicTacToeGame {
         System.out.println(Strings.GAME_STARTED + ticTacToeGame.getBoard().toString());
 
         while (ticTacToeGame.getState()) {
-            ticTacToeGame.nextPin();
+            ticTacToeGame.nextPin(true);
         }
     }
 }

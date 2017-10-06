@@ -12,7 +12,7 @@ public class RulesTest {
         ticTacToeGame.createPlayerX();
         ticTacToeGame.createPlayerO();
         ticTacToeGame.start();
-        ticTacToeGame.nextPin();
+        ticTacToeGame.nextPin(false);
         Assertions.assertTrue(ticTacToeGame.getBoard().toString().contains("x"));
     }
 
@@ -21,8 +21,8 @@ public class RulesTest {
         ticTacToeGame.createPlayerX();
         ticTacToeGame.createPlayerO();
         ticTacToeGame.start();
-        ticTacToeGame.nextPin();
-        ticTacToeGame.nextPin();
+        ticTacToeGame.nextPin(false);
+        ticTacToeGame.nextPin(false);
         Assertions.assertTrue(ticTacToeGame.getBoard().toString().contains("o"));
     }
 
@@ -107,6 +107,31 @@ public class RulesTest {
         Assertions.assertFalse(ticTacToeGame.getState());
         Assertions.assertTrue(ticTacToeGame.getBoard().isDiagonalCompleted());
         Assertions.assertEquals(Strings.DIAGONAL, ticTacToeGame.getMessage());
+    }
+
+    @Test
+    public void GameFinishedInADraw() {
+        ticTacToeGame.createPlayerX();
+        ticTacToeGame.createPlayerO();
+        ticTacToeGame.start();
+
+        TicTacToeBoard board = ticTacToeGame.getBoard();
+        Player playerX = ticTacToeGame.getPlayerX();
+        Player playerO = ticTacToeGame.getPlayerO();
+
+        board.tryPin(playerX, 1, 1);
+        board.tryPin(playerO, 0, 1);
+        board.tryPin(playerX, 0, 2);
+        board.tryPin(playerO, 2, 0);
+        board.tryPin(playerX, 0, 0);
+        board.tryPin(playerO, 2, 2);
+        board.tryPin(playerX, 1, 2);
+        board.tryPin(playerO, 1, 0);
+        board.tryPin(playerX, 2, 1);
+        ticTacToeGame.checkBoard();
+
+        Assertions.assertFalse(ticTacToeGame.getState());
+        Assertions.assertEquals(Strings.DRAW, ticTacToeGame.getMessage());
     }
 
 
